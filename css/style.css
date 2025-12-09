@@ -317,3 +317,225 @@ img {
 .mobile-menu-open {
     animation: slideDown 0.3s ease-out;
 }
+
+/* Mobile Responsive Improvements */
+
+/* Mobile Navigation */
+@media (max-width: 768px) {
+    /* Header and Navigation */
+    nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 50;
+    }
+    
+    body {
+        padding-top: 64px;
+    }
+    
+    /* Typography for Mobile */
+    h1 {
+        font-size: 1.875rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    h3 {
+        font-size: 1.25rem;
+    }
+    
+    p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+    
+    /* Spacing */
+    .section-padding {
+        padding: 2rem 1rem;
+    }
+    
+    /* Grid adjustments */
+    .grid {
+        gap: 1rem;
+    }
+    
+    /* Card padding */
+    .card {
+        padding: 1rem;
+    }
+    
+    /* Button sizing */
+    button, .btn {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.95rem;
+    }
+    
+    /* Image height adjustments */
+    .hero-image {
+        height: 300px;
+    }
+    
+    .activity-card {
+        height: auto;
+    }
+    
+    .gallery-item {
+        height: 200px;
+    }
+    
+    /* Responsive columns */
+    .grid-cols-2 {
+        grid-template-columns: 1fr;
+    }
+    
+    .grid-cols-3 {
+        grid-template-columns: 1fr;
+    }
+    
+    .grid-cols-4 {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    /* Flex adjustments */
+    .flex-row {
+        flex-direction: column;
+    }
+    
+    /* Padding and margin */
+    .px-8 {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    .py-16 {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+    
+    .mb-12 {
+        margin-bottom: 1.5rem;
+    }
+}
+
+/* Extra Small Devices (Mobile Phones) */
+@media (max-width: 480px) {
+    /* Typography */
+    h1 {
+        font-size: 1.5rem;
+    }
+    
+    h2 {
+        font-size: 1.25rem;
+    }
+    
+    h3 {
+        font-size: 1.1rem;
+    }
+    
+    /* Padding reduction */
+    .max-w-7xl {
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+    }
+    
+    /* Hero section */
+    .hero-content {
+        padding: 1rem;
+    }
+    
+    /* Navigation spacing */
+    .space-x-8 {
+        gap: 1rem;
+    }
+    
+    /* Card adjustments */
+    .rounded-xl {
+        border-radius: 0.75rem;
+    }
+    
+    /* Button full width on mobile */
+    .mobile-full-width {
+        width: 100%;
+    }
+    
+    /* Text sizing */
+    .text-lg {
+        font-size: 1rem;
+    }
+    
+    /* Icon sizing */
+    .text-5xl {
+        font-size: 2.5rem;
+    }
+    
+    .text-6xl {
+        font-size: 3rem;
+    }
+    
+    /* Form improvements */
+    input, textarea, select {
+        font-size: 16px;
+        padding: 0.75rem;
+    }
+}
+
+/* Tablet Devices (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .grid-cols-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .grid-cols-4 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Landscape Mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero-section {
+        min-height: 100vh;
+    }
+    
+    nav {
+        height: 60px;
+    }
+    
+    body {
+        padding-top: 60px;
+    }
+}
+
+/* Touch-friendly targets */
+@media (max-width: 768px) {
+    /* Minimum 44x44px for touch targets */
+    a, button {
+        min-height: 44px;
+        min-width: 44px;
+        padding: 12px 16px;
+    }
+    
+    /* Reduce hover effects on mobile */
+    a:hover, button:hover {
+        opacity: 0.8;
+    }
+    
+    /* Prevent zoom on input focus */
+    input, textarea, select {
+        font-size: 16px;
+    }
+}
+
+/* Print Styles */
+@media print {
+    nav, footer, .mobile-menu-btn {
+        display: none;
+    }
+    
+    .no-print {
+        display: none;
+    }
+}
+

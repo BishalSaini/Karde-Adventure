@@ -330,6 +330,52 @@ if (window.matchMedia) {
     });
 }
 
+// Mobile Responsive Enhancements
+
+// Detect device type
+const isMobile = window.innerWidth <= 768;
+const isTablet = window.innerWidth > 768 && window.innerWidth <= 1024;
+
+// Prevent accidental double-tap zoom
+document.addEventListener('touchend', function(e) {
+    if (e.touches.length < 2 && e.changedTouches) {
+        if (Date.now() - lastTouchTime < 300) {
+            e.preventDefault();
+        }
+        lastTouchTime = Date.now();
+    }
+}, false);
+
+let lastTouchTime = 0;
+
+// Handle viewport orientation changes
+window.addEventListener('orientationchange', function() {
+    console.log('Orientation changed to:', window.orientation);
+    // Refresh layout if needed
+    setTimeout(function() {
+        window.scrollTo(0, 0);
+    }, 100);
+});
+
+// Improve touch feedback for buttons
+const buttons = document.querySelectorAll('button, a[href], .cursor-pointer');
+buttons.forEach(btn => {
+    btn.addEventListener('touchstart', function() {
+        this.style.opacity = '0.8';
+    });
+    
+    btn.addEventListener('touchend', function() {
+        this.style.opacity = '1';
+    });
+});
+
+// Disable pinch zoom on mobile if needed (optional)
+document.addEventListener('wheel', function(e) {
+    if (e.ctrlKey) {
+        e.preventDefault();
+    }
+}, { passive: false });
+
 // Service Worker Registration (for PWA functionality)
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('./js/sw.js').catch(err => {
@@ -347,12 +393,31 @@ function showCookieConsent() {
 
 showCookieConsent();
 
+// Responsive menu close on resize
+window.addEventListener('resize', function() {
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (window.innerWidth > 768 && mobileMenu) {
+        mobileMenu.classList.add('hidden');
+    }
+});
+
+// Mobile performance optimization - Defer non-critical content loading
+window.addEventListener('load', function() {
+    // Load analytics or other non-critical scripts
+    if (navigator.connection && navigator.connection.saveData) {
+        console.log('User has requested data saver mode');
+    }
+});
+
 // Export utilities for use in other scripts
 window.AppUtils = {
     formatCurrency,
     formatPhoneNumber,
     validateEmail,
-    validatePhone
+    validatePhone,
+    isMobile,
+    isTablet
 };
 
 console.log('Karde Beach website script loaded successfully');
+
