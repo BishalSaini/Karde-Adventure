@@ -2,9 +2,16 @@
 const mobileMenuBtn = document.getElementById('mobile-menu-btn');
 const mobileMenu = document.getElementById('mobile-menu');
 
-if (mobileMenuBtn) {
-    mobileMenuBtn.addEventListener('click', function() {
+if (mobileMenuBtn && mobileMenu) {
+    mobileMenuBtn.addEventListener('click', function(e) {
+        e.preventDefault();
         mobileMenu.classList.toggle('hidden');
+        // Prevent scroll when menu is open
+        if (!mobileMenu.classList.contains('hidden')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
     });
 }
 
@@ -12,8 +19,21 @@ if (mobileMenuBtn) {
 const mobileMenuLinks = document.querySelectorAll('#mobile-menu a');
 mobileMenuLinks.forEach(link => {
     link.addEventListener('click', function() {
-        mobileMenu.classList.add('hidden');
+        if (mobileMenu) {
+            mobileMenu.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
     });
+});
+
+// Close mobile menu when clicking outside
+document.addEventListener('click', function(e) {
+    if (mobileMenu && !mobileMenu.classList.contains('hidden') && 
+        !mobileMenu.contains(e.target) && 
+        !mobileMenuBtn.contains(e.target)) {
+        mobileMenu.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
 });
 
 // Smooth scroll behavior for navigation links
@@ -29,17 +49,22 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Lazy Loading for Images (when images are added)
+// Lazy Loading for Images
 if ('IntersectionObserver' in window) {
     const imageObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const img = entry.target;
-                img.src = img.dataset.src;
+                if (img.dataset.src) {
+                    img.src = img.dataset.src;
+                }
                 img.classList.remove('lazy');
                 imageObserver.unobserve(img);
             }
         });
+    }, {
+        rootMargin: '50px 0px',
+        threshold: 0.01
     });
 
     document.querySelectorAll('img.lazy').forEach(img => {
@@ -54,6 +79,7 @@ if (fadeInElements.length > 0 && 'IntersectionObserver' in window) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('opacity-100');
+                entry.target.classList.remove('opacity-0');
                 fadeInObserver.unobserve(entry.target);
             }
         });
@@ -64,6 +90,19 @@ if (fadeInElements.length > 0 && 'IntersectionObserver' in window) {
         fadeInObserver.observe(el);
     });
 }
+
+// Window resize handler for responsive adjustments
+let resizeTimer;
+window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function() {
+        // Close mobile menu on resize to desktop
+        if (window.innerWidth > 768 && mobileMenu && !mobileMenu.classList.contains('hidden')) {
+            mobileMenu.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+    }, 250);
+});
 
 // Smooth page transitions
 window.addEventListener('beforeunload', function() {
