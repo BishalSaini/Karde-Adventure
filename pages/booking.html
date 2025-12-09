@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Adventure - Karde Beach Water Sports</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="font-sans text-gray-800">
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-2">
+                    <img src="../images/logo.png" alt="KAS Logo" class="h-10 w-auto">
+                    <span class="text-xl font-bold text-gray-800">Karde Beach</span>
+                </div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="../index.html" class="text-gray-800 hover:text-blue-600 font-medium transition">Home</a>
+                    <a href="about.html" class="text-gray-800 hover:text-blue-600 font-medium transition">About</a>
+                    <a href="services.html" class="text-gray-800 hover:text-blue-600 font-medium transition">Services</a>
+                    <a href="gallery.html" class="text-gray-800 hover:text-blue-600 font-medium transition">Gallery</a>
+                    <a href="contact.html" class="text-gray-800 hover:text-blue-600 font-medium transition">Contact</a>
+                </div>
+                
+                <a href="booking.html" class="hidden md:inline bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition font-medium text-blue-600">
+                    Book Now
+                </a>
+                
+                <button id="mobile-menu-btn" class="md:hidden text-gray-800 text-2xl">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200 py-4">
+            <a href="../index.html" class="block px-4 py-2 text-gray-800 hover:bg-blue-50 hover:text-blue-600">Home</a>
+            <a href="about.html" class="block px-4 py-2 text-gray-800 hover:bg-blue-50 hover:text-blue-600">About</a>
+            <a href="services.html" class="block px-4 py-2 text-gray-800 hover:bg-blue-50 hover:text-blue-600">Services</a>
+            <a href="gallery.html" class="block px-4 py-2 text-gray-800 hover:bg-blue-50 hover:text-blue-600">Gallery</a>
+            <a href="contact.html" class="block px-4 py-2 text-gray-800 hover:bg-blue-50 hover:text-blue-600">Contact</a>
+            <a href="booking.html" class="block mx-4 mt-2 bg-blue-600 text-white px-4 py-2 rounded-lg text-center hover:bg-blue-700">Book Now</a>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="mt-16 bg-gradient-to-r from-blue-600 to-cyan-500 text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h1 class="text-5xl font-bold mb-4">Book Your Adventure</h1>
+            <p class="text-xl text-blue-100">Reserve your spot and create unforgettable memories at Karde Beach</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 py-20">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <!-- Booking Form -->
+            <div class="lg:col-span-2">
+                <div class="bg-white rounded-xl shadow-lg p-10">
+                    <h2 class="text-3xl font-bold mb-8 text-gray-800">Book Your Experience</h2>
+                    
+                    <form id="bookingForm" class="space-y-6">
+                        <!-- Personal Information -->
+                        <div class="border-b pb-6">
+                            <h3 class="text-xl font-bold mb-4 text-gray-800">Personal Information</h3>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="fullname" class="block text-sm font-semibold text-gray-700 mb-2">Full Name *</label>
+                                    <input type="text" id="fullname" name="fullname" required placeholder="John Doe" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">Email *</label>
+                                    <input type="email" id="email" name="email" required placeholder="john@example.com" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                </div>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                                <div>
+                                    <label for="phone" class="block text-sm font-semibold text-gray-700 mb-2">Phone Number *</label>
+                                    <input type="tel" id="phone" name="phone" required placeholder="+91 98765 43210" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                </div>
+                                <div>
+                                    <label for="age" class="block text-sm font-semibold text-gray-700 mb-2">Age *</label>
+                                    <input type="number" id="age" name="age" required placeholder="25" min="1" max="120" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Activity Selection -->
+                        <div class="border-b pb-6">
+                            <h3 class="text-xl font-bold mb-4 text-gray-800">Select Activity *</h3>
+                            
+                            <div class="space-y-3">
+                                <label class="flex items-center p-4 border border-gray-300 rounded-lg cursor-pointer hover:bg-blue-50 transition">
+                                    <input type="radio" name="activity" value="Jet Ski" required class="w-4 h-4 text-blue-600">
+                                    <span class="ml-3">
+                                        <span class="font-semibold text-gray-800">Jet Ski Thrill</span>
+                                        <span class="text-gray-600 text-sm block">High-speed water adventure</span>
+                                    </span>
+                                </label>
+                                
+                                <label class="flex items-center p-4 border border-gray-300 rounded-lg cursor-pointer hover:bg-blue-50 transition">
+                                    <input type="radio" name="activity" value="Kayaking" required class="w-4 h-4 text-blue-600">
+                                    <span class="ml-3">
+                                        <span class="font-semibold text-gray-800">Kayaking</span>
+                                        <span class="text-gray-600 text-sm block">Peaceful water exploration</span>
+                                    </span>
+                                </label>
+                                
+                                <label class="flex items-center p-4 border border-gray-300 rounded-lg cursor-pointer hover:bg-blue-50 transition">
+                                    <input type="radio" name="activity" value="Sleeper Ride" required class="w-4 h-4 text-blue-600">
+                                    <span class="ml-3">
+                                        <span class="font-semibold text-gray-800">Sleeper Ride</span>
+                                        <span class="text-gray-600 text-sm block">Thrilling tube adventure</span>
+                                    </span>
+                                </label>
+                                
+                                <label class="flex items-center p-4 border border-gray-300 rounded-lg cursor-pointer hover:bg-blue-50 transition">
+                                    <input type="radio" name="activity" value="Sofa Ride" required class="w-4 h-4 text-blue-600">
+                                    <span class="ml-3">
+                                        <span class="font-semibold text-gray-800">Sofa Ride</span>
+                                        <span class="text-gray-600 text-sm block">Comfortable group experience</span>
+                                    </span>
+                                </label>
+                                
+                                <label class="flex items-center p-4 border border-gray-300 rounded-lg cursor-pointer hover:bg-blue-50 transition">
+                                    <input type="radio" name="activity" value="Banana Ride" required class="w-4 h-4 text-blue-600">
+                                    <span class="ml-3">
+                                        <span class="font-semibold text-gray-800">Banana Ride</span>
+                                        <span class="text-gray-600 text-sm block">Fun for groups (3-5 people)</span>
+                                    </span>
+                                </label>
+                                
+                                <label class="flex items-center p-4 border border-gray-300 rounded-lg cursor-pointer hover:bg-blue-50 transition">
+                                    <input type="radio" name="activity" value="Double Banana Ride" required class="w-4 h-4 text-blue-600">
+                                    <span class="ml-3">
+                                        <span class="font-semibold text-gray-800">Double Banana Ride</span>
+                                        <span class="text-gray-600 text-sm block">Double the fun (two tubes)</span>
+                                    </span>
+                                </label>
+                                
+                                <label class="flex items-center p-4 border border-gray-300 rounded-lg cursor-pointer hover:bg-blue-50 transition">
+                                    <input type="radio" name="activity" value="Band Wagon" required class="w-4 h-4 text-blue-600">
+                                    <span class="ml-3">
+                                        <span class="font-semibold text-gray-800">Band Wagon</span>
+                                        <span class="text-gray-600 text-sm block">Large group rides (8-12 people)</span>
+                                    </span>
+                                </label>
+                                
+                                <label class="flex items-center p-4 border border-gray-300 rounded-lg cursor-pointer hover:bg-blue-50 transition">
+                                    <input type="radio" name="activity" value="Speed Boat Ride" required class="w-4 h-4 text-blue-600">
+                                    <span class="ml-3">
+                                        <span class="font-semibold text-gray-800">Speed Boat Ride</span>
+                                        <span class="text-gray-600 text-sm block">Ultimate adrenaline rush</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- Date & Time -->
+                        <div class="border-b pb-6">
+                            <h3 class="text-xl font-bold mb-4 text-gray-800">Select Date & Time</h3>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="date" class="block text-sm font-semibold text-gray-700 mb-2">Preferred Date *</label>
+                                    <input type="date" id="date" name="date" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                </div>
+                                <div>
+                                    <label for="time" class="block text-sm font-semibold text-gray-700 mb-2">Preferred Time *</label>
+                                    <select id="time" name="time" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                        <option value="">Select a time slot</option>
+                                        <option value="06:00 AM">06:00 AM</option>
+                                        <option value="07:00 AM">07:00 AM</option>
+                                        <option value="08:00 AM">08:00 AM</option>
+                                        <option value="09:00 AM">09:00 AM</option>
+                                        <option value="10:00 AM">10:00 AM</option>
+                                        <option value="11:00 AM">11:00 AM</option>
+                                        <option value="12:00 PM">12:00 PM</option>
+                                        <option value="02:00 PM">02:00 PM</option>
+                                        <option value="03:00 PM">03:00 PM</option>
+                                        <option value="04:00 PM">04:00 PM</option>
+                                        <option value="05:00 PM">05:00 PM</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Number of People -->
+                        <div class="border-b pb-6">
+                            <h3 class="text-xl font-bold mb-4 text-gray-800">Number of Participants</h3>
+                            
+                            <div>
+                                <label for="people" class="block text-sm font-semibold text-gray-700 mb-2">How many people? *</label>
+                                <input type="number" id="people" name="people" required value="1" min="1" max="10" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                        </div>
+                        
+                        <!-- Additional Services -->
+                        <div class="border-b pb-6">
+                            <h3 class="text-xl font-bold mb-4 text-gray-800">Additional Services</h3>
+                            
+                            <div class="space-y-3">
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="photovideo" value="GoPro Video" class="w-4 h-4 text-blue-600 rounded">
+                                    <span class="ml-3 text-gray-700">GoPro Video Recording</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="photovideo" value="Professional Photography" class="w-4 h-4 text-blue-600 rounded">
+                                    <span class="ml-3 text-gray-700">Professional Photography</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="extras" value="Lunch Package" class="w-4 h-4 text-blue-600 rounded">
+                                    <span class="ml-3 text-gray-700">Lunch Package</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- Special Requests -->
+                        <div class="pb-6">
+                            <h3 class="text-xl font-bold mb-4 text-gray-800">Special Requests</h3>
+                            <textarea id="requests" name="requests" rows="4" placeholder="Any special requests or medical conditions we should know about?" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                        </div>
+                        
+                        <!-- Terms -->
+                        <div class="flex items-start">
+                            <input type="checkbox" id="terms" name="terms" required class="w-4 h-4 text-blue-600 mt-1">
+                            <label for="terms" class="ml-3 text-gray-700">
+                                I agree to the <a href="#" class="text-blue-600 hover:underline">terms and conditions</a> and <a href="#" class="text-blue-600 hover:underline">cancellation policy</a> *
+                            </label>
+                        </div>
+                        
+                        <!-- Submit Button -->
+                        <button type="submit" class="w-full bg-blue-600 text-white px-8 py-3 rounded-lg font-bold text-lg hover:bg-blue-700 transition transform hover:scale-105">
+                            <i class="fas fa-check-circle mr-2"></i> Complete Booking
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Booking Summary -->
+            <div class="lg:col-span-1">
+                <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-8 sticky top-24">
+                    <h3 class="text-2xl font-bold mb-6 text-gray-800">Booking Details</h3>
+                    
+                    <div id="summary-content" class="space-y-4 mb-6 min-h-20">
+                        <p class="text-gray-600 text-center text-sm">Select an activity to see details</p>
+                    </div>
+                    
+                    <div class="border-t border-gray-300 pt-6">
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-700 font-semibold">Price:</span>
+                            <span id="subtotal" class="text-lg text-blue-600 font-semibold">Contact for pricing</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 bg-white rounded-lg p-4">
+                        <h4 class="font-bold text-gray-800 mb-3">Quick Contact</h4>
+                        <div class="space-y-3">
+                            <a href="tel:+918275162013" class="flex items-center text-blue-600 hover:text-blue-700 transition">
+                                <i class="fas fa-phone mr-2"></i> +91 82751 62013
+                            </a>
+                            <a href="https://wa.me/918275162013" class="flex items-center text-green-600 hover:text-green-700 transition">
+                                <i class="fab fa-whatsapp mr-2"></i> WhatsApp Now
+                            </a>
+                            <a href="mailto:kardeadventuresports@gmail.com" class="flex items-center text-blue-600 hover:text-blue-700 transition">
+                                <i class="fas fa-envelope mr-2"></i> Email Us
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 bg-green-50 border border-green-200 rounded-lg p-4">
+                        <p class="text-sm text-gray-700">
+                            <i class="fas fa-check-circle text-green-600 mr-2"></i>
+                            <strong>Confirmation via Email & WhatsApp</strong> after booking
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="text-lg font-bold mb-4 flex items-center">
+                        <i class="fas fa-water text-blue-400 mr-2"></i> Karde Beach
+                    </h4>
+                    <p class="text-gray-400">Your gateway to unforgettable water sports adventures at Karde Beach, Dapoli.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="about.html" class="hover:text-blue-400 transition">About Us</a></li>
+                        <li><a href="services.html" class="hover:text-blue-400 transition">Services</a></li>
+                        <li><a href="gallery.html" class="hover:text-blue-400 transition">Gallery</a></li>
+                        <li><a href="contact.html" class="hover:text-blue-400 transition">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Contact Us</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="tel:+918275162013" class="hover:text-blue-400 transition"><i class="fas fa-phone mr-2"></i>+91 82751 62013</a></li>
+                        <li><a href="mailto:kardeadventuresports@gmail.com" class="hover:text-blue-400 transition"><i class="fas fa-envelope mr-2"></i>kardeadventuresports@gmail.com</a></li>
+                        <li class="pt-2"><i class="fas fa-map-marker-alt text-blue-400 mr-2"></i>Karde Beach, Dapoli</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition text-2xl"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition text-2xl"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition text-2xl"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition text-2xl"><i class="fab fa-youtube"></i></a>
+                        <a href="https://wa.me/919876543210" class="text-gray-400 hover:text-blue-400 transition text-2xl"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center md:text-left text-gray-400 text-sm">
+                    <p>&copy; 2025 Karde Beach Water Sports. All rights reserved.</p>
+                    <div class="flex justify-center md:justify-center space-x-6">
+                        <a href="#" class="hover:text-blue-400 transition">Privacy Policy</a>
+                        <a href="#" class="hover:text-blue-400 transition">Terms & Conditions</a>
+                    </div>
+                    <p class="text-right md:text-right">Made with <i class="fas fa-heart text-red-500"></i> for adventure seekers</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl p-8 max-w-md w-full text-center animate-scale-up">
+            <div class="text-6xl text-green-600 mb-4">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2 class="text-2xl font-bold text-gray-800 mb-2">Booking Confirmed!</h2>
+            <p class="text-gray-600 mb-6">Your booking has been received. You will receive a confirmation email and WhatsApp message shortly.</p>
+            <a href="../index.html" class="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg font-bold hover:bg-blue-700 transition">
+                <i class="fas fa-home mr-2"></i> Back to Home
+            </a>
+        </div>
+    </div>
+
+    <script src="../js/script.js"></script>
+    <script>
+        // Update booking summary
+        function updateSummary() {
+            // Get selected activity
+            const activity = document.querySelector('input[name="activity"]:checked');
+            const people = parseInt(document.getElementById('people').value) || 1;
+            
+            // Update summary display
+            const summaryContent = document.getElementById('summary-content');
+            let summaryHtml = '';
+            
+            if (activity) {
+                summaryHtml += `<p><span class="text-gray-700">Activity:</span><span class="text-gray-800 font-semibold">${activity.value}</span></p>`;
+                summaryHtml += `<p><span class="text-gray-700">Participants:</span><span class="text-gray-800 font-semibold">${people}</span></p>`;
+                
+                // Show selected extras if any
+                const extras = document.querySelectorAll('input[name="photovideo"]:checked, input[name="extras"]:checked');
+                if (extras.length > 0) {
+                    summaryHtml += `<div class="border-t border-gray-300 pt-3 mt-3">`;
+                    summaryHtml += `<p class="text-gray-800 font-semibold mb-2">Additional Services:</p>`;
+                    extras.forEach(extra => {
+                        summaryHtml += `<p class="text-gray-700">• ${extra.value}</p>`;
+                    });
+                    summaryHtml += `</div>`;
+                }
+            }
+            
+            summaryContent.innerHTML = summaryHtml || '<p class="text-gray-600 text-center text-sm">Select an activity to see details</p>';
+            
+            // Hide pricing section
+            document.getElementById('subtotal').textContent = `Contact for pricing`;
+            document.getElementById('taxes').textContent = ``;
+            document.getElementById('total').textContent = ``;
+        }
+
+        // Event listeners for form changes
+        document.querySelectorAll('input[name="activity"]').forEach(input => {
+            input.addEventListener('change', updateSummary);
+        });
+        
+        document.getElementById('people').addEventListener('change', updateSummary);
+        
+        document.querySelectorAll('input[name="photovideo"], input[name="extras"]').forEach(input => {
+            input.addEventListener('change', updateSummary);
+        });
+
+        // Form submission
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = {
+                name: document.getElementById('fullname').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                age: document.getElementById('age').value,
+                activity: document.querySelector('input[name="activity"]:checked').value,
+                date: document.getElementById('date').value,
+                time: document.getElementById('time').value,
+                people: document.getElementById('people').value,
+                requests: document.getElementById('requests').value,
+            };
+            
+            // You can send this data to a server here
+            console.log('Booking Data:', formData);
+            
+            // Show success modal
+            document.getElementById('successModal').classList.remove('hidden');
+            
+            // Reset form
+            this.reset();
+            updateSummary();
+            
+            // Hide modal after 5 seconds
+            setTimeout(() => {
+                document.getElementById('successModal').classList.add('hidden');
+            }, 5000);
+        });
+
+        // Initialize summary
+        updateSummary();
+    </script>
+</body>
+</html>
