@@ -1,382 +1,739 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Karde Beach Water Sports - Adventure Awaits</title>
+    <title>Karde Waves | Premium Water Adventures</title> 
+    <meta name="description" content="Experience the thrill of water sports at Karde Waves. Offering jet skiing, kayaking, speed boat rides, and more on the pristine beaches of Dapoli, Maharashtra. Book your adventure today!"> 
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body class="font-sans text-gray-800">
-    <!-- Navigation Bar -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 sm:py-0">
-            <div class="flex justify-between items-center h-14 sm:h-16">
-                <!-- Logo -->
-                <div class="flex items-center space-x-2 sm:space-x-2 min-w-0 flex-shrink">
-                    <img src="images/logo.png" alt="KAS Logo" class="h-8 sm:h-10 w-auto flex-shrink-0">
-                    <span class="text-sm sm:text-lg lg:text-xl font-bold text-gray-800 whitespace-nowrap overflow-hidden text-overflow-ellipsis">Karde Beach</span>
-                </div>
-                
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-8">
-                    <a href="index.html" class="text-gray-800 hover:text-blue-600 font-medium transition">Home</a>
-                    <a href="pages/about.html" class="text-gray-800 hover:text-blue-600 font-medium transition">About</a>
-                    <a href="pages/services.html" class="text-gray-800 hover:text-blue-600 font-medium transition">Services</a>
-                    <a href="pages/gallery.html" class="text-gray-800 hover:text-blue-600 font-medium transition">Gallery</a>
-                    <a href="pages/contact.html" class="text-gray-800 hover:text-blue-600 font-medium transition">Contact</a>
-                </div>
-                
-                <!-- CTA Button - Desktop Only -->
-                
-                
-                <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="md:hidden text-gray-800 text-2xl flex-shrink-0 ml-auto p-2 flex items-center justify-center">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </div>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sea-deep: #0f172a;
+            --sea-primary: #0ea5e9;
+            --sea-soft: #f0f9ff;
+        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: white; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
         
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200 py-4">
-            <a href="index.html" class="block px-4 py-2 text-gray-800 hover:bg-blue-50 hover:text-blue-600">Home</a>
-            <a href="pages/about.html" class="block px-4 py-2 text-gray-800 hover:bg-blue-50 hover:text-blue-600">About</a>
-            <a href="pages/services.html" class="block px-4 py-2 text-gray-800 hover:bg-blue-50 hover:text-blue-600">Services</a>
-            <a href="pages/gallery.html" class="block px-4 py-2 text-gray-800 hover:bg-blue-50 hover:text-blue-600">Gallery</a>
-            <a href="pages/contact.html" class="block px-4 py-2 text-gray-800 hover:bg-blue-50 hover:text-blue-600">Contact</a>
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        /* When hero is visible make nav text white */
+        #navbar.nav-white .nav-link {
+            color: whitesmoke !important;
+        }
+        #navbar.nav-white a.group img {
+            filter: none;
+        }
+        #navbar.nav-white button, #navbar.nav-white i, #navbar.nav-white .w-8 {
+            color: whitesmoke !important;
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .btn-premium {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .btn-premium::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: rgba(255,255,255,0.1);
+            transform: translate(-50%, -50%) rotate(45deg) scale(0);
+            transition: transform 0.5s ease;
+        }
+        .btn-premium:hover::after {
+            transform: translate(-50%, -50%) rotate(45deg) scale(1);
+        } 
+
+             /* Modal Background Styling */
+        .modal-bg-image {
+            background-image: url('https://images.unsplash.com/photo-1505118380757-91f5f5632de0?auto=format&fit=crop&q=80&w=1200');
+            background-size: cover;
+            background-position: center;
+        }
+
+            /* Custom modal scrollbar */
+            .modal-scroll {
+                scrollbar-width: thin; /* Firefox */
+                scrollbar-color: rgba(14,165,233,0.75) rgba(255,255,255,0.04);
+            }
+            .modal-scroll::-webkit-scrollbar {
+                width: 10px;
+            }
+            .modal-scroll::-webkit-scrollbar-track {
+                background: rgba(255,255,255,0.03);
+                border-radius: 999px;
+            }
+            .modal-scroll::-webkit-scrollbar-thumb {
+                background: linear-gradient(180deg, rgba(14,165,233,0.95), rgba(14,165,233,0.7));
+                border-radius: 999px;
+                border: 2px solid transparent;
+                background-clip: padding-box;
+            }
+            .modal-scroll::-webkit-scrollbar-thumb:hover {
+                background: linear-gradient(180deg, rgba(14,165,233,1), rgba(0,123,255,0.85));
+            } 
+
+            .cta-banner {
+            background: linear-gradient(rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.6)), url('https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/41/63/c9/good-bye-pic.jpg?w=1400&h=800&s=1');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Checkbox Custom Styling */
+        .custom-checkbox {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            border-radius: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .custom-checkbox:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: #0ea5e9;
+        }
+        .custom-checkbox input:checked + span {
+            color: #0ea5e9;
+            font-weight: 800;
+        }
+        .custom-checkbox input {
+            accent-color: #0ea5e9;
+            width: 1.1rem;
+            height: 1.1rem;
+        }
+
+        /* Custom number spinner styling */
+        .number-input .decrement, .number-input .increment {
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.04);
+            transition: background .15s ease, transform .08s ease;
+        }
+        .number-input .decrement:active, .number-input .increment:active { transform: scale(0.98); }
+        .number-input input { -moz-appearance: textfield; }
+        .number-input input::-webkit-outer-spin-button,
+        .number-input input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+        /* Speed blur effect for the hero */
+        .speed-overlay {
+            background: linear-gradient(90deg, rgba(15,23,42,0.4) 0%, rgba(15,23,42,0) 50%, rgba(15,23,42,0.4) 100%);
+        } 
+
+        #loader{
+    height: 100%;
+    width: 100%;
+    background-color: #000;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    transition: all ease 0.7s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#loader h1{
+    font-size: 4vw;
+    color: transparent;
+    background: linear-gradient(to right,white,#38BDF8);
+    -webkit-background-clip: text;
+    position: absolute;
+    opacity: 0;
+    animation-name: load;
+    animation-duration: 1s;
+    animation-delay: 1s;
+    animation-timing-function: linear;
+}
+#loader h1:nth-child(2){
+    animation-delay: 2s;
+}
+#loader h1:nth-child(3){
+    animation-delay: 3s;
+}
+
+@keyframes load {
+    0%{
+        opacity: 0;
+    }
+    10%{
+        opacity: 1;
+    }
+    90%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+
+@media (max-width:600px) {
+    #loader h1{
+        font-size: 9vw;
+      
+    }
+}
+    </style>
+</head> 
+<body class="selection:bg-sky-100 selection:text-sky-900">  
+       <div id="loader">
+    <h1>Welcome to</h1>
+    <h1>Karde Adventure</h1>
+    <h1>Loading your next adventure...</h1>
+  </div>
+
+
+    <!-- Minimalist Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-500 py-6" id="navbar">
+        <div class="container mx-auto px-8 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-3 group">
+              <!--   <div class="w-10 h-10 bg-sky-600 rounded-full flex items-center justify-center text-white shadow-lg shadow-sky-200 group-hover:rotate-12 transition-transform">
+                    <i data-lucide="droplets" class="w-5 h-5"></i>
+                </div> -->
+                <img src="images/logo-removebg-preview.png" alt="Karde Waves Logo" class="w-30 h-16 object-contain bg-transparent" />
+                <!-- <span class="text-xl font-extrabold tracking-tight text-slate-900 uppercase">Karde<span class="text-sky-500 italic">Waves</span></span> -->
+            </a>
+            
+            <div class="hidden md:flex items-center gap-10 text-sm font-bold uppercase tracking-widest text-slate-600">
+                <a href="index.html" class="nav-link transition-colors">Home</a>
+                <a href="main-pages/about-us.html" class="nav-link transition-colors">About</a>
+                <a href="main-pages/service.html" class="nav-link transition-colors">Services</a>
+                <a href="main-pages/gallery.html" class="nav-link transition-colors">Gallery</a>
+                <a href="main-pages/contact.html" class="nav-link transition-colos">Contact us</a>
+            </div>
+
+            <button class="md:hidden p-2 text-slate-900" onclick="toggleMenu()">
+                <i data-lucide="align-right" class="w-8 h-8"></i>
+            </button>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="mt-16 h-screen bg-cover bg-center bg-no-repeat text-white flex items-center justify-center relative overflow-hidden" style="background-image: url('images/main.jpeg');">
-        <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+    <!-- Mobile Menu (hidden on md+) -->
+    <div id="mobile-menu" class="md:hidden hidden fixed inset-0 bg-white/95 backdrop-blur-sm p-8 pt-24" style="z-index:9999;">
+        <button onclick="toggleMenu()" class="absolute top-6 right-6 p-2 text-slate-900">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+        <nav class="flex flex-col gap-6 text-xl font-bold uppercase tracking-widest text-slate-900">
+            <a href="index.html" onclick="toggleMenu()" class="nav-link">Home</a>
+            <a href="main-pages/about-us.html" onclick="toggleMenu()" class="nav-link">About</a>
+            <a href="main-pages/service.html" onclick="toggleMenu()" class="nav-link">Services</a>
+            <a href="main-pages/gallery.html" onclick="toggleMenu()" class="nav-link">Gallery</a>
+            <a href="main-pages/contact.html" onclick="toggleMenu()" class="nav-link">Contact us</a>
+        </nav>
+    </div>
+
+    <!-- Hero: Cinematic & Action-Oriented -->
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden bg-slate-900">
+        <!-- High Action Background Image -->
+        <img src="https://www.holidaymonk.com/wp-content/uploads/2021/10/Kayaking-in-Alleppey.jpg" 
+             class="absolute w-full h-full object-cover brightness-75 scale-105" alt="Jet Ski Action">
         
-        <div class="relative z-10 text-center max-w-4xl mx-auto px-4 py-8">
-            <h1 class="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 leading-tight drop-shadow-lg">
-                Experience Thrill at Karde Beach
+        <!-- Gradient Overlay for readability -->
+        <div class="absolute inset-0 bg-gradient-to-r from-slate-900/60 via-transparent to-slate-900/60"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-slate-900/40"></div>
+        
+        <div class="relative z-10 text-center px-6 max-w-5xl mx-auto">
+            <!-- <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 px-6 py-2 rounded-full mb-8 reveal">
+                <span class="w-2 h-2 bg-sky-500 rounded-full animate-pulse"></span>
+                <span class="text-white text-xs font-bold tracking-[0.2em] uppercase">Now Open for the Season</span>
+            </div> -->
+            
+            <h1 class="text-6xl md:text-8xl font-bold text-white mb-8 leading-[0.9] reveal" style="transition-delay: 200ms;">
+                Experience Thrill  <br><span class="italic font-serif text-sky-400"> at Karde Beach</span>
             </h1>
-            <p class="text-sm sm:text-base md:text-xl lg:text-2xl mb-6 sm:mb-8 text-blue-100 drop-shadow">
-                Discover the ultimate water sports adventure with unforgettable memories
+            
+            <p class="text-lg md:text-2xl text-white/90 mb-12 max-w-2xl mx-auto font-light leading-relaxed reveal" style="transition-delay: 400ms;">
+               Discover the ultimate water sports adventure with unforgettable memories.
             </p>
-            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-                
-                    
-                </a>
-                
-            </div>
-        </div>
-    </section>
-
-    <!-- Highlights Section -->
-    <section class="py-12 sm:py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4">
-            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-16">Why Choose Karde Beach Adventures?</h2>
             
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8">
-                <!-- Highlight 1: Safety -->
-                <div class="bg-white p-6 sm:p-8 rounded-xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
-                    <div class="text-4xl sm:text-5xl text-blue-600 mb-4 text-center">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3 class="text-lg sm:text-xl font-bold text-center mb-3">100% Safe</h3>
-                    <p class="text-center text-gray-600 text-sm sm:text-base">Complete life jacket protection and comprehensive insurance coverage</p>
-                </div>
-                
-                <!-- Highlight 2: Certified Trainers -->
-                <div class="bg-white p-6 sm:p-8 rounded-xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
-                    <div class="text-4xl sm:text-5xl text-green-600 mb-4 text-center">
-                        <i class="fas fa-award"></i>
-                    </div>
-                    <h3 class="text-lg sm:text-xl font-bold text-center mb-3">Certified Trainers</h3>
-                    <p class="text-center text-gray-600 text-sm sm:text-base">Expert professionals with years of experience and proper credentials</p>
-                </div>
-                
-                <!-- Highlight 3: Affordable Packages -->
-                <div class="bg-white p-6 sm:p-8 rounded-xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
-                    <div class="text-4xl sm:text-5xl text-yellow-600 mb-4 text-center">
-                        <i class="fas fa-tags"></i>
-                    </div>
-                    <h3 class="text-lg sm:text-xl font-bold text-center mb-3">Best Prices</h3>
-                    <p class="text-center text-gray-600 text-sm sm:text-base">Affordable packages without compromising on quality and experience</p>
-                </div>
-                
-                <!-- Highlight 4: Beach View -->
-                <div class="bg-white p-6 sm:p-8 rounded-xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
-                    <div class="text-4xl sm:text-5xl text-blue-400 mb-4 text-center">
-                        <i class="fas fa-sun"></i>
-                    </div>
-                    <h3 class="text-lg sm:text-xl font-bold text-center mb-3">Beach Paradise</h3>
-                    <p class="text-center text-gray-600 text-sm sm:text-base">Beautiful serene waters with frequent dolphin sightings</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Preview Section -->
-    <section class="py-12 sm:py-16 bg-white">
-        <div class="max-w-7xl mx-auto px-4">
-            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-2 sm:mb-4">Our Popular Activities</h2>
-            <p class="text-center text-gray-600 mb-8 sm:mb-12 text-sm sm:text-base">Choose from our exciting range of water sports adventures</p>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-                <!-- Jet Ski -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition transform hover:scale-105 cursor-pointer group" onclick="location.href='pages/services.html#jet-ski'">
-                    <div class="h-48 sm:h-56 bg-blue-500 overflow-hidden relative">
-                        <img src="images/jetski.jpeg" alt="Jet Ski" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
-                    </div>
-                    <div class="p-4 sm:p-6 bg-gradient-to-br from-blue-500 to-blue-600 text-white">
-                        <h3 class="text-lg sm:text-xl font-bold mb-2">Jet Ski</h3>
-                        <p class="text-xs sm:text-sm">Feel the speed and adrenaline</p>
-                    </div>
-                </div>
-                
-                <!-- Kayaking -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition transform hover:scale-105 cursor-pointer group" onclick="location.href='pages/services.html#kayaking'">
-                    <div class="h-48 sm:h-56 bg-green-500 overflow-hidden relative">
-                        <img src="images/kayaking.png" alt="Kayaking" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
-                    </div>
-                    <div class="p-4 sm:p-6 bg-gradient-to-br from-green-500 to-green-600 text-white">
-                        <h3 class="text-lg sm:text-xl font-bold mb-2">Kayaking</h3>
-                        <p class="text-xs sm:text-sm">Explore calm waters</p>
-                    </div>
-                </div>
-                
-                <!-- Sleeper Ride -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition transform hover:scale-105 cursor-pointer group" onclick="location.href='pages/services.html#sleeper-ride'">
-                    <div class="h-48 sm:h-56 bg-cyan-500 overflow-hidden relative">
-                        <img src="images/sleepride.png" alt="Sleeper Ride" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
-                    </div>
-                    <div class="p-4 sm:p-6 bg-gradient-to-br from-cyan-500 to-cyan-600 text-white">
-                        <h3 class="text-lg sm:text-xl font-bold mb-2">Sleeper Ride</h3>
-                        <p class="text-xs sm:text-sm">Thrilling water experience</p>
-                    </div>
-                </div>
-                
-                <!-- Sofa Ride -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition transform hover:scale-105 cursor-pointer group" onclick="location.href='pages/services.html#sofa-ride'">
-                    <div class="h-48 sm:h-56 bg-purple-500 overflow-hidden relative">
-                        <img src="images/sofaride.jpeg" alt="Sofa Ride" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
-                    </div>
-                    <div class="p-4 sm:p-6 bg-gradient-to-br from-purple-500 to-purple-600 text-white">
-                        <h3 class="text-lg sm:text-xl font-bold mb-2">Sofa Ride</h3>
-                        <p class="text-xs sm:text-sm">Comfortable water ride</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- More Activities Horizontal Tab -->
-            <div class="mt-6 sm:mt-8">
-                <button onclick="toggleMoreActivities()" class="w-full bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-600 text-white rounded-xl p-6 sm:p-8 hover:shadow-2xl transition transform hover:-translate-y-1 cursor-pointer group">
-                    <div class="flex items-center justify-between gap-4">
-                        <div>
-                            <h3 class="text-xl sm:text-2xl font-bold text-left mb-1 sm:mb-2">4 More Exciting Activities</h3>
-                            <p class="text-left text-indigo-100 text-xs sm:text-base">Banana Ride, Double Banana, Band Wagon & Speed Boat</p>
-                        </div>
-                        <div class="text-3xl sm:text-5xl flex-shrink-0 group-hover:translate-x-2 transition">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                    </div>
+            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center reveal" style="transition-delay: 600ms;">
+                <button onclick="openBooking()" class="group bg-sky-500 text-white px-12 py-6 rounded-full font-bold text-lg hover:bg-sky-400 hover:scale-105 transition-all shadow-[0_20px_50px_rgba(14,165,233,0.3)] flex items-center gap-3">
+                    Enroll Now <i data-lucide="zap" class="w-5 h-5 fill-white"></i>
+                </button>
+                <button onclick="document.getElementById('services').scrollIntoView()" class="bg-white/10 backdrop-blur-md border border-white/30 text-white px-12 py-6 rounded-full font-bold text-lg hover:bg-white/20 transition-all">
+                    Explore Activities
                 </button>
             </div>
-            
-            <!-- More Activities Section (Hidden by Default) -->
-            <div id="moreActivitiesSection" class="hidden mt-8 sm:mt-12">
-                <h3 class="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-8">Additional Adventures</h3>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-                    <!-- Banana Ride -->
-                    <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition transform hover:scale-105 cursor-pointer group" onclick="location.href='pages/services.html#banana-ride'">
-                        <div class="h-48 sm:h-56 bg-yellow-500 overflow-hidden relative">
-                            <img src="images/banana ride.jpg" alt="Banana Ride" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
-                        </div>
-                        <div class="p-4 sm:p-6 bg-gradient-to-br from-yellow-500 to-yellow-600 text-white">
-                            <h3 class="text-lg sm:text-xl font-bold mb-2">Banana Ride</h3>
-                            <p class="text-xs sm:text-sm">Fun for groups</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Double Banana Ride -->
-                    <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition transform hover:scale-105 cursor-pointer group" onclick="location.href='pages/services.html#double-banana-ride'">
-                        <div class="h-48 sm:h-56 bg-orange-500 overflow-hidden relative">
-                            <img src="images/doublebanana.png" alt="Double Banana Ride" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
-                        </div>
-                        <div class="p-4 sm:p-6 bg-gradient-to-br from-orange-500 to-orange-600 text-white">
-                            <h3 class="text-lg sm:text-xl font-bold mb-2">Double Banana Ride</h3>
-                            <p class="text-xs sm:text-sm">Double the fun with two tubes</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Band Wagon -->
-                    <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition transform hover:scale-105 cursor-pointer group" onclick="location.href='pages/services.html#band-wagon'">
-                        <div class="h-48 sm:h-56 bg-pink-500 overflow-hidden relative">
-                            <img src="images/bandwagon.png" alt="Band Wagon" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
-                        </div>
-                        <div class="p-4 sm:p-6 bg-gradient-to-br from-pink-500 to-pink-600 text-white">
-                            <h3 class="text-lg sm:text-xl font-bold mb-2">Band Wagon</h3>
-                            <p class="text-xs sm:text-sm">Large group platform</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Speed Boat Ride -->
-                    <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition transform hover:scale-105 cursor-pointer group" onclick="location.href='pages/services.html#speed-boat-ride'">
-                        <div class="h-48 sm:h-56 bg-red-500 overflow-hidden relative">
-                            <img src="images/speed-boats.jpg" alt="Speed Boat Ride" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
-                        </div>
-                        <div class="p-4 sm:p-6 bg-gradient-to-br from-red-500 to-red-600 text-white">
-                            <h3 class="text-lg sm:text-xl font-bold mb-2">Speed Boat Ride</h3>
-                            <p class="text-xs sm:text-sm">Ultimate adrenaline rush</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Hide Button -->
-                <div class="text-center mt-6 sm:mt-8">
-                    <button onclick="toggleMoreActivities()" class="bg-indigo-600 text-white px-6 sm:px-8 py-2 sm:py-3 rounded-lg font-bold hover:bg-indigo-700 transition text-sm sm:text-base">
-                        <i class="fas fa-chevron-up mr-2"></i>Show Less
-                    </button>
-                </div>
-            </div>
+        </div>
+
+
+        <div class="absolute bottom-12 left-1/2 -translate-x-1/2 floating text-white/50">
+            <i data-lucide="chevron-down" class="w-8 h-8"></i>
         </div>
     </section>
 
-    <!-- Top Services Detailed Preview -->
-    <section class="py-12 sm:py-16 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4">
-            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-16">Featured Experiences</h2>
-            
-            <!-- Service Card 1: Jet Ski -->
-            <div class="mb-8 sm:mb-12 bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
-                    <div class="h-56 sm:h-80 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center overflow-hidden">
-                        <img src="images/jetski.jpeg" alt="Jet Ski" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-6 sm:p-8 flex flex-col justify-center">
-                        <h3 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-3 sm:mb-4">Jet Ski Thrill</h3>
-                        <p class="text-gray-600 mb-4 sm:mb-6 text-sm sm:text-base">Feel the speed and excitement as you ride the waves on a powerful Jet Ski. Perfect for thrill seekers and adventure lovers!</p>
-                        <p class="text-gray-600 mb-3 sm:mb-4 text-sm"><i class="fas fa-check text-green-600 mr-2"></i>Life jacket included</p>
-                        <p class="text-gray-600 mb-4 sm:mb-6 text-sm"><i class="fas fa-check text-green-600 mr-2"></i>Instructor guidance</p>
-                        
-                    </div>
+    <!-- Intro: The Wow Factor (Minimalist Grid) -->
+    <section id="services" class="py-32 bg-white">
+        <div class="container mx-auto px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+                <div class="max-w-xl reveal">
+                    <span class="text-sky-500 font-bold tracking-widest uppercase text-sm mb-4 block">Our Popular Activities</span>
+                    <h2 class="text-4xl md:text-6xl font-bold text-slate-900">Feel the Rush, <br>Find the Flow.</h2>
+                </div>
+                <div class="reveal" style="transition-delay: 200ms;">
+                    <p class="text-slate-500 max-w-xs mb-4">From high-speed adrenaline to morning dolphin safaris, we've perfected the art of beach adventure.</p>
                 </div>
             </div>
-            
-            <!-- Service Card 2: Kayaking -->
-            <div class="mb-8 sm:mb-12 bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
-                    <div class="h-56 sm:h-80 bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center order-last md:order-first overflow-hidden">
-                        <img src="images/kayaking.png" alt="Kayaking" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-6 sm:p-8 flex flex-col justify-center order-first md:order-last">
-                        <h3 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-3 sm:mb-4">Kayaking</h3>
-                        <p class="text-gray-600 mb-4 sm:mb-6 text-sm sm:text-base">Explore the calm waters of Karde Beach at your own pace. A peaceful experience perfect for nature lovers and photographers.</p>
-                        <p class="text-gray-600 mb-2 sm:mb-3 text-sm"><i class="fas fa-check text-green-600 mr-2"></i>Single or double kayak</p>
-                        <p class="text-gray-600 mb-4 sm:mb-6 text-sm"><i class="fas fa-check text-green-600 mr-2"></i>Basic training session</p>
-                        
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-10">
+                <!-- Large Feature -->
+                <div class="md:col-span-8 group relative overflow-hidden rounded-[3rem] h-[600px] reveal">
+                    <img src="https://joygoa.com/uploads/0000/1/2023/06/19/water-sports-in-goa5.png" 
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" alt="Jet Ski">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-12 left-12 right-12 text-white">
+                        <div class="flex justify-between items-end">
+                            <div>
+                                <span class="bg-sky-500 px-4 py-1 rounded-full text-xs font-bold uppercase mb-4 inline-block">Bestseller</span>
+                                <h3 class="text-4xl font-bold mb-2">Jet Ski</h3>
+                                <p class="text-white/70">Feel the speed and adrenaline</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Service Card 3: Sleeper Ride -->
-            <div class="mb-8 sm:mb-12 bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
-                    <div class="h-56 sm:h-80 bg-gradient-to-br from-cyan-400 to-cyan-600 flex items-center justify-center overflow-hidden">
-                        <img src="images/sleepride.png" alt="Sleeper Ride" class="w-full h-full object-cover">
+
+                <!-- Small Features Stack -->
+                <div class="md:col-span-4 flex flex-col gap-10">
+                    <div class="group relative overflow-hidden rounded-[3rem] h-[280px] reveal" style="transition-delay: 200ms;">
+                        <img src="https://d1ivb2c2d81ilf.cloudfront.net/parks-rec/Headers/_1200x630_crop_center-center_82_none/Couple-Kayaking-in-Lake.jpg?mtime=1678968825" class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700">
+                        <div class="absolute inset-0 bg-black/30 group-hover:bg-sky-900/40 transition-all"></div>
+                        <div class="absolute inset-0 p-8 flex flex-col justify-end text-white">
+                            <h4 class="text-2xl font-bold">Kayaking</h4>
+                            <p class="text-sm opacity-80">Paddle through pristine waters and discover the marine life at your leisure</p>
+                        </div>
                     </div>
-                    <div class="p-6 sm:p-8 flex flex-col justify-center">
-                        <h3 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-3 sm:mb-4">Sleeper Ride</h3>
-                        <p class="text-gray-600 mb-4 sm:mb-6 text-sm sm:text-base">Experience the thrilling sleeper ride on the water. An exciting and unique adventure that will keep you on your toes!</p>
-                        <p class="text-gray-600 mb-2 sm:mb-3 text-sm"><i class="fas fa-check text-green-600 mr-2"></i>Safety equipment provided</p>
-                        <p class="text-gray-600 mb-4 sm:mb-6 text-sm"><i class="fas fa-check text-green-600 mr-2"></i>Professional guidance</p>
-                        
+                    <div class="group relative overflow-hidden rounded-[3rem] h-[280px] reveal" style="transition-delay: 400ms;">
+                        <img src="https://media3.thrillophilia.com/filestore/zxm6xbg4zmc5sj0rfbw42xkkzzhg_Speedboat%20Goa-Variant-2.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700">
+                        <div class="absolute inset-0 bg-black/30 group-hover:bg-sky-900/40 transition-all"></div>
+                        <div class="absolute inset-0 p-8 flex flex-col justify-end text-white">
+                            <h4 class="text-2xl font-bold">Speed Boat Ride</h4>
+                            <p class="text-sm opacity-80">Ride in a high-speed boat and experience the rush</p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+                <!-- Extended Activities Grid (adds 5 more items) -->
+                <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 reveal">
+                    <div class="group relative overflow-hidden rounded-2xl h-44">
+                        <img src="https://media3.thrillophilia.com/filestore/25q0nb5qgu8odntyh6mo5uybol4s_Downpic.cc-image235138730%20(1).jpg?w=400&dpr=2" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 to-transparent"></div>
+                        <div class="absolute left-4 bottom-4 text-white">
+                            <h5 class="font-bold">Sleeper Ride</h5>
+                            <p class="text-xs opacity-80">Hold tight for a thrilling ride on the waves</p>
+                        </div>
+                    </div>
+
+                    <div class="group relative overflow-hidden rounded-2xl h-44">
+                        <img src="https://journeyandaman.in/journey-andaman-admin/uploads/1833222063_sofa-ride.webp" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 to-transparent"></div>
+                        <div class="absolute left-4 bottom-4 text-white">
+                            <h5 class="font-bold">Sofa Ride</h5>
+                            <p class="text-xs opacity-80">Relax and enjoy a comfortable ride on the water</p>
+                        </div>
+                    </div>
+
+                    <div class="group relative overflow-hidden rounded-2xl h-44">
+                        <img src="https://i.ytimg.com/vi/IgSFnTZ_GgE/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBnYTHupHEMl2NH5BmKFOnSfW4_jw" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 to-transparent"></div>
+                        <div class="absolute left-4 bottom-4 text-white">
+                            <h5 class="font-bold">Banana Ride</h5>
+                            <p class="text-xs opacity-80">Group fun ride on an inflatable banana boat</p>
+                        </div>
+                    </div>
+
+                    <div class="group relative overflow-hidden rounded-2xl h-44">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_3o8_SZLQGkWu8_JRKyStQpt0HaOT7rdjWQ&s" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 to-transparent"></div>
+                        <div class="absolute left-4 bottom-4 text-white">
+                            <h5 class="font-bold">Double Banana Ride</h5>
+                            <p class="text-xs opacity-80">Double the fun on an inflatable banana boat</p>
+                        </div>
+                    </div>
+
+                    <div class="group relative overflow-hidden rounded-2xl h-44">
+                        <img src="https://d26dp53kz39178.cloudfront.net/media/uploads/products/2_result-1675743074213.webp" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 to-transparent"></div>
+                        <div class="absolute left-4 bottom-4 text-white">
+                            <h5 class="font-bold">Band Wagon</h5>
+                            <p class="text-xs opacity-80">Perfect for big groups and team fun</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Call to Action Section -->
-    <section class="py-12 sm:py-20 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
-        <div class="max-w-4xl mx-auto px-4 text-center">
-            <h2 class="text-2xl sm:text-4xl font-bold mb-3 sm:mb-4">Ready for Your Water Sports Adventure?</h2>
-            <p class="text-base sm:text-xl mb-6 sm:mb-8 text-blue-100">Book your experience today and create unforgettable memories at Karde Beach</p>
-            
-                Book Your Adventure Now <i class="fas fa-arrow-right ml-2"></i>
-            </a>
+        <section class="cta-banner py-40 relative flex items-center justify-center text-center px-8 overflow-hidden">
+        <div class="max-w-4xl reveal relative z-10">
+            <h2 class="text-5xl md:text-8xl font-bold text-white mb-6 leading-tight drop-shadow-lg">Ready for the <span class="italic text-sky-300">Splash?</span></h2>
+            <p class="text-lg md:text-2xl text-white/90 font-light mb-12 max-w-2xl mx-auto">Experience the ultimate coastal thrill. Secure your spot on the waves today.</p>
+            <button onclick="openBooking()" class="bg-white text-sky-600 px-16 py-6 rounded-full font-bold text-xl hover:bg-sky-50 hover:scale-105 transition-all shadow-[0_20px_50px_rgba(0,0,0,0.3)] flex items-center gap-4 mx-auto uppercase tracking-widest">
+                Enroll Now <i data-lucide="arrow-right" class="w-6 h-6"></i>
+            </button>
         </div>
     </section>
+    <!-- UPDATED PREMIUM FOOTER -->
+    <footer class="bg-[#0b1222] pt-24 pb-12 text-white relative overflow-hidden border-t border-white/5">
+        <div class="footer-wave"></div>
+        <div class="container mx-auto px-8 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
+                <!-- Brand Identity -->
+                <div class="space-y-8">
+                    <a href="#" class="inline-block">
+                        <img src="images/logo-removebg-preview.png" alt="Logo" class="h-14 w-auto object-contain brightness-0 invert" />
+                    </a>
+                    <p class="text-slate-400 text-sm leading-relaxed max-w-xs">
+                        Karde Waves is Maharashtra's premier ocean adventure hub, bringing world-class water sports to the pristine shores of Dapoli.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="https://www.instagram.com/karde_adventure_sports?igsh=cmUzd3djamg1em9l" class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center hover:bg-sky-600 hover:-translate-y-1 transition-all duration-300 border border-white/10">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <a href="https://www.facebook.com/share/r/1JzYBoZjDt/?mibextid=wwXIfr" class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center hover:bg-sky-600 hover:-translate-y-1 transition-all duration-300 border border-white/10">
+                            <i data-lucide="facebook" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-8 sm:py-12">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-8">
-                <!-- About -->
+                <!-- Fast Links -->
                 <div>
-                    <h4 class="text-base sm:text-lg font-bold mb-3 sm:mb-4 flex items-center">
-                        <i class="fas fa-water text-blue-400 mr-2"></i> Karde Beach
-                    </h4>
-                    <p class="text-gray-400 text-sm">Your gateway to unforgettable water sports adventures at Karde Beach, Dapoli.</p>
-                </div>
-                
-                <!-- Quick Links -->
-                <div>
-                    <h4 class="text-base sm:text-lg font-bold mb-3 sm:mb-4">Quick Links</h4>
-                    <ul class="space-y-1 sm:space-y-2 text-gray-400 text-sm">
-                        <li><a href="pages/about.html" class="hover:text-blue-400 transition">About Us</a></li>
-                        <li><a href="pages/services.html" class="hover:text-blue-400 transition">Services</a></li>
-                        <li><a href="pages/gallery.html" class="hover:text-blue-400 transition">Gallery</a></li>
-                        <li><a href="pages/contact.html" class="hover:text-blue-400 transition">Contact Us</a></li>
+                    <h5 class="text-white font-extrabold uppercase tracking-widest text-xs mb-8 flex items-center gap-2">
+                        <span class="w-6 h-px bg-sky-500"></span> Navigation
+                    </h5>
+                    <ul class="space-y-4 text-slate-400 text-sm">
+                        <li><a href="index.html" class="hover:text-sky-400 flex items-center gap-2 transition-colors"><i data-lucide="chevron-right" class="w-3 h-3"></i> Home</a></li>
+                        <li><a href="main-pages/about-us.html" class="hover:text-sky-400 flex items-center gap-2 transition-colors"><i data-lucide="chevron-right" class="w-3 h-3"></i> About us</a></li>
+                        <li><a href="main-pages/service.html" class="hover:text-sky-400 flex items-center gap-2 transition-colors"><i data-lucide="chevron-right" class="w-3 h-3"></i> Adventure Services</a></li>
+                        <li><a href="main-pages/gallery.html" class="hover:text-sky-400 flex items-center gap-2 transition-colors"><i data-lucide="chevron-right" class="w-3 h-3"></i> Visual Gallery</a></li>
+                        <li><a href="main-pages/contact.html" class="hover:text-sky-400 flex items-center gap-2 transition-colors"><i data-lucide="chevron-right" class="w-3 h-3"></i> Get In Touch</a></li>
                     </ul>
                 </div>
-                
+
+                <!-- Popular Services -->
+                <div>
+                    <h5 class="text-white font-extrabold uppercase tracking-widest text-xs mb-8 flex items-center gap-2">
+                        <span class="w-6 h-px bg-sky-500"></span> Popular Rides
+                    </h5>
+                    <ul class="space-y-4 text-slate-400 text-sm">
+                        <li class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded bg-sky-500/10 flex items-center justify-center text-sky-500"><i data-lucide="wind" class="w-4 h-4"></i></div>
+                            Jet Ski Adventure
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded bg-sky-500/10 flex items-center justify-center text-sky-500"><i data-lucide="ship" class="w-4 h-4"></i></div>
+                            Banana Boat Ride
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded bg-sky-500/10 flex items-center justify-center text-sky-500"><i data-lucide="anchor" class="w-4 h-4"></i></div>
+                            Speed Boat
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded bg-sky-500/10 flex items-center justify-center text-sky-500"><i data-lucide="navigation" class="w-4 h-4"></i></div>
+                            Kayaking
+                        </li>
+                    </ul>
+                </div>
+
                 <!-- Contact Info -->
-                <div>
-                    <h4 class="text-base sm:text-lg font-bold mb-3 sm:mb-4">Contact Us</h4>
-                    <ul class="space-y-1 sm:space-y-2 text-gray-400 text-sm">
-                        <li><a href="tel:+918275162013" class="hover:text-blue-400 transition"><i class="fas fa-phone mr-2"></i>+91 82751 62013</a></li>
-                        <li><a href="mailto:kardeadventuresports@gmail.com" class="hover:text-blue-400 transition"><i class="fas fa-envelope mr-2"></i>kardeadventuresports@gmail.com</a></li>
-                        <li class="pt-1 sm:pt-2"><i class="fas fa-map-marker-alt text-blue-400 mr-2"></i>Karde Beach, Dapoli</li>
-                    </ul>
-                </div>
-                
-                <!-- Social Media -->
-                <div>
-                    <h4 class="text-base sm:text-lg font-bold mb-3 sm:mb-4">Follow Us</h4>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-blue-400 transition text-xl sm:text-2xl"><i class="fab fa-facebook"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-blue-400 transition text-xl sm:text-2xl"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-blue-400 transition text-xl sm:text-2xl"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-blue-400 transition text-xl sm:text-2xl"><i class="fab fa-youtube"></i></a>
-                        <a href="https://wa.me/918275162013" class="text-gray-400 hover:text-blue-400 transition text-xl sm:text-2xl"><i class="fab fa-whatsapp"></i></a>
+                <div class="space-y-8">
+                    <div>
+                        <h5 class="text-white font-extrabold uppercase tracking-widest text-xs mb-8 flex items-center gap-2">
+                            <span class="w-6 h-px bg-sky-500"></span> Contact Us
+                        </h5>
+                        <div class="flex items-start gap-4 mb-6">
+                            <div class="mt-1"><i data-lucide="map-pin" class="w-5 h-5 text-sky-500"></i></div>
+                            <p class="text-slate-400 text-sm">Karde Beach, Dapoli,<br>Ratnagiri, Maharashtra 415712</p>
+                        </div>
+                        <div class="flex items-center gap-4 mb-4">
+                            <i data-lucide="phone" class="w-5 h-5 text-sky-500"></i>
+                            <a href="tel:+919876543210" class="text-slate-400 text-sm hover:text-white transition-colors">+91 82751 62013</a>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <i data-lucide="mail" class="w-5 h-5 text-sky-500"></i>
+                            <a href="mailto:kardeadventuresports@gmail.com" class="text-slate-400 text-sm hover:text-white transition-colors">kardeadventuresports@gmail.com</a>
+                        </div>
                     </div>
                 </div>
             </div>
-            
-            <div class="border-t border-gray-700 pt-6 sm:pt-8">
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 text-center sm:text-left text-gray-400 text-xs sm:text-sm">
-                    <p>&copy; 2025 Karde Beach Water Sports. All rights reserved.</p>
-                    <div class="flex justify-center sm:justify-center space-x-4 sm:space-x-6 text-xs sm:text-sm">
-                        <a href="#" class="hover:text-blue-400 transition">Privacy Policy</a>
-                        <a href="#" class="hover:text-blue-400 transition">Terms</a>
-                    </div>
-                    <p class="text-center sm:text-right">Developed by Sabaat Tungekar</p>
+
+            <!-- Footer Bottom Bar -->
+            <div class="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
+                <p class="text-slate-500 text-[10px] uppercase tracking-[0.3em] text-center md:text-left">
+                    &copy; 2026 Karde Waves Premium Adventure. All rights reserved.
+                </p>
+                
+                <!-- Attribution -->
+                <div class="flex items-center gap-4">
+                    <span class="text-slate-500 text-[10px] uppercase tracking-widest">Developed By</span>
+                    <a href="#" class="group flex items-center gap-2">
+                        <span class="text-slate-500 text-[10px] uppercase tracking-widest">Sabaat Tungekar</span>
+                    </a>
                 </div>
             </div>
         </div>
     </footer>
+   <!-- NEW ENROLL MODAL -->
+    <div id="booking-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 transition-all">
+        <div class="absolute inset-0 bg-slate-900/80 backdrop-blur-md" onclick="closeBooking()"></div>
+        <div class="modal-bg-image w-full max-w-2xl rounded-[3rem] overflow-hidden shadow-2xl relative z-10 scale-95 opacity-0 transition-all duration-300" id="modal-content">
+            
+            <!-- Glassmorphism Overlay Container -->
+            <div class="bg-slate-900/70 backdrop-blur-xl p-10 md:p-14 text-white max-h-[90vh] overflow-y-auto modal-scroll">
+                <div class="flex justify-between items-center mb-8">
+                    <div>
+                        <h3 class="text-3xl md:text-4xl font-bold">Secure Your <span class="text-sky-400">Spot</span></h3>
+                        <p class="text-white/60 text-sm">Fill out the details to plan your adventure.</p>
+                    </div>
+                    <button onclick="closeBooking()" class="text-white/50 hover:text-white"><i data-lucide="x" class="w-8 h-8"></i></button>
+                </div>
+                
+                <form class="space-y-6">
+                    <!-- Row 1: Name & Email -->
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="space-y-1">
+                            <label class="text-[10px] font-black uppercase tracking-widest text-sky-400">Full Name</label>
+                            <input type="text" placeholder="Your Name" class="w-full bg-white/10 border border-white/20 p-4 rounded-2xl focus:ring-2 focus:ring-sky-500 outline-none text-white placeholder-white/30">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-[10px] font-black uppercase tracking-widest text-sky-400">Email ID</label>
+                            <input type="email" placeholder="email@example.com" class="w-full bg-white/10 border border-white/20 p-4 rounded-2xl focus:ring-2 focus:ring-sky-500 outline-none text-white placeholder-white/30">
+                        </div>
+                    </div>
 
-    <script src="js/script.js"></script>
+                    <!-- Row 2: Phone & Dates -->
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="space-y-1">
+                            <label class="text-[10px] font-black uppercase tracking-widest text-sky-400">Phone Number</label>
+                            <input type="tel" placeholder="+91 00000 00000" class="w-full bg-white/10 border border-white/20 p-4 rounded-2xl focus:ring-2 focus:ring-sky-500 outline-none text-white placeholder-white/30">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-[10px] font-black uppercase tracking-widest text-sky-400">Preferred Date</label>
+                            <input type="date" class="w-full bg-white/10 border border-white/20 p-4 rounded-2xl focus:ring-2 focus:ring-sky-500 outline-none text-white">
+                        </div>
+                    </div>
+
+                    <!-- Row 3: No. of People (custom spinner) -->
+                    <div class="space-y-1">
+                        <label class="text-[10px] font-black uppercase tracking-widest text-sky-400">Number of People</label>
+                        <div class="number-input w-full flex items-center gap-3">
+                            <button type="button" class="decrement bg-white/10 text-white w-10 h-10 rounded-lg flex items-center justify-center hover:bg-white/20">−</button>
+                            <input id="people-count" type="number" min="1" value="1" class="flex-1 bg-white/10 border border-white/20 p-4 rounded-2xl focus:ring-2 focus:ring-sky-500 outline-none text-white text-center" />
+                            <button type="button" class="increment bg-white/10 text-white w-10 h-10 rounded-lg flex items-center justify-center hover:bg-white/20">+</button>
+                        </div>
+                    </div>
+
+                    <!-- Activities Checkboxes -->
+                    <div class="space-y-4">
+                        <label class="text-[10px] font-black uppercase tracking-widest text-sky-400">Select Activities</label>
+                        <div class="grid grid-cols-2 gap-3">
+                            <label class="custom-checkbox">
+                                <input type="checkbox" class="mr-3">
+                                <span class="text-sm">Jet Ski</span>
+                            </label>
+                            <label class="custom-checkbox">
+                                <input type="checkbox" class="mr-3">
+                                <span class="text-sm">Kayaking</span>
+                            </label>
+                            <label class="custom-checkbox">
+                                <input type="checkbox" class="mr-3">
+                                <span class="text-sm">Speed Boat Ride</span>
+                            </label>
+                            <label class="custom-checkbox">
+                                <input type="checkbox" class="mr-3">
+                                <span class="text-sm">Sleeper Ride</span>
+                            </label>
+                            <label class="custom-checkbox">
+                                <input type="checkbox" class="mr-3">
+                                <span class="text-sm">Sofa Ride</span>
+                            </label>
+                            <label class="custom-checkbox">
+                                <input type="checkbox" class="mr-3">
+                                <span class="text-sm">Banana Ride</span>
+                            </label>
+                            <label class="custom-checkbox">
+                                <input type="checkbox" class="mr-3">
+                                <span class="text-sm">Double Banana Ride</span>
+                            </label>
+                            <label class="custom-checkbox">
+                                <input type="checkbox" class="mr-3">
+                                <span class="text-sm">Band Wagon</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="button" class="w-full bg-sky-500 text-white py-6 rounded-2xl font-black uppercase tracking-[0.2em] hover:bg-sky-400 shadow-xl shadow-sky-600/20 transition-all mt-6">
+                        Confirm Enrollment
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // Toggle More Activities Section
-        function toggleMoreActivities() {
-            const section = document.getElementById('moreActivitiesSection');
-            if (section.classList.contains('hidden')) {
-                section.classList.remove('hidden');
-                // Scroll to the section
-                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            } else {
-                section.classList.add('hidden');
-            }
+        // Init Lucide
+        lucide.createIcons();
+
+        // Reveal Animations on Scroll
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Navbar reference for multiple handlers
+        const nav = document.getElementById('navbar');
+
+        // Mobile menu toggle
+        const mobileMenu = document.getElementById('mobile-menu');
+        function toggleMenu() {
+            if (!mobileMenu) return;
+            const isHidden = mobileMenu.classList.toggle('hidden');
+            // prevent background scroll when menu is open
+            document.body.style.overflow = isHidden ? 'auto' : 'hidden';
+            // (re-create lucide icons inside menu since icons are added on init)
+            try { lucide.createIcons(); } catch(e) {}
         }
+
+        // Keep hero-aware nav color: when hero is visible make text white
+        const hero = document.getElementById('home');
+        if (hero && nav) {
+            const heroObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        nav.classList.add('nav-white');
+                    } else {
+                        nav.classList.remove('nav-white');
+                    }
+                });
+            }, { threshold: 0.6 });
+            heroObserver.observe(hero);
+        }
+
+            // Number spinner behavior (modal)
+            (function(){
+                const input = document.getElementById('people-count');
+                const inc = document.querySelector('.increment');
+                const dec = document.querySelector('.decrement');
+                if (!input) return;
+
+                const clamp = (v) => Math.max(1, Math.floor(v) || 1);
+
+                inc && inc.addEventListener('click', () => {
+                    input.value = clamp(Number(input.value) + 1);
+                    input.dispatchEvent(new Event('input'));
+                });
+                dec && dec.addEventListener('click', () => {
+                    input.value = clamp(Number(input.value) - 1);
+                    input.dispatchEvent(new Event('input'));
+                });
+
+                // sanitize manual input
+                input.addEventListener('input', () => {
+                    if (input.value === '') return;
+                    input.value = clamp(input.value);
+                });
+            })();
+
+        // Navbar Scroll Logic (visual/background changes)
+        window.addEventListener('scroll', () => {
+            if (!nav) return;
+            if (window.scrollY > 100) {
+                nav.classList.add('glass-nav', 'py-4', 'shadow-sm');
+                nav.classList.remove('py-6');
+            } else {
+                nav.classList.remove('glass-nav', 'py-4', 'shadow-sm');
+                nav.classList.add('py-6');
+            }
+        }); 
+
+            function loaderAnimation() {
+    var loader = document.querySelector("#loader")
+    setTimeout(function () {
+        loader.style.top = "-100%"
+    }, 4200)
+}
+loaderAnimation(); 
+
+        // Booking Modal Logic
+        const modal = document.getElementById('booking-modal');
+        const modalContent = document.getElementById('modal-content');
+        const priceDisplay = document.getElementById('modal-price');
+        const select = document.getElementById('activity-select');
+
+        const prices = {
+            'Jet Ski Adventure': '₹600',
+            'Parasailing': '₹1200',
+            'Dolphin Safari': '₹400',
+            'Kayaking': '₹300'
+        };
+
+        function openBooking(activity = '') {
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => {
+                modalContent.classList.remove('scale-90', 'opacity-0');
+                modalContent.classList.add('scale-100', 'opacity-100');
+            }, 10);
+            
+            if (activity) {
+                select.value = activity;
+                updatePrice();
+            }
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeBooking() {
+            modalContent.classList.add('scale-90', 'opacity-0');
+            modalContent.classList.remove('scale-100', 'opacity-100');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 300);
+            document.body.style.overflow = 'auto';
+        }
+
+        function updatePrice() {
+            priceDisplay.innerText = prices[select.value] || '₹0';
+        }
+
+        select.addEventListener('change', updatePrice); 
+
     </script>
 </body>
 </html>
